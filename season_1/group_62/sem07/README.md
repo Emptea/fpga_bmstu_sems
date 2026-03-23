@@ -1,0 +1,60 @@
+# Использование tcl–скриптов для быстрого создания проектов
+## Требования
+- Установлен Active-HDL
+- Путь к Active-HDL добавлен в переменную `Path` системных переменных среды (путь по умолчанию в Windows: `C:\Aldec\Active-HDL-Student-Edition\bin`)
+- Установлен Quartus II 13.0.1
+- Путь к Quartus добавлен в переменную `Path` системных переменных среды (путь по умолчанию в Windows: `C:\altera\13.0sp1\quartus\bin`)
+- Если Quartus не установлен в путь по умолчанию, должна быть задана переменная среды `QUARTUS_ROOTDIR` (пример: `QUARTUS_ROOTDIR=F:\altera\13.0sp1`)
+## Файловая структура проекта
+```
+├── board/ # Board-файлы QSF под разные платы
+├── src/ # Исходные файлы VHDL/Verilog
+│ └── counter_up_down.vhd
+│ └── counter_up_down_tb.vhd
+└── tcl/ # Tcl-скрипты Quartus
+```
+## Использование tcl-скриптов
+Все tcl–скрипты запускаются из корня проекта.
+
+Для создания проекта Active-HDL без библиотек CycloneII:
+```
+avhdl -do "do tcl/avhdl_create_project.tcl"
+```
+Для создания проекта Active-HDL с библиотеками CycloneII:
+```
+avhdl -do "do tcl/avhdl_create_project.tcl -cII"
+```
+Для создания проекта Quartus
+```
+quartus_sh -t tcl/qsh_create_project.tcl [-project <project_name>] [-folder <destination_folder>] [-src_exc <folders_to_exclude>] [-top <top_module_name>] [-tb <testbench_name>] [-board <qsf_name>]
+```
+Пример полной команды создания проекта Quartus:
+```
+quartus_sh -t tcl/qsh_create_project.tcl -project counter_up_down -folder quartus -src_exc testbench software -top counter_up_down -tb counter_up_down_tb -board DE2_Default
+```
+Пример минимальной команды создания проекта Quartus для данного проекта:
+```
+quartus_sh -t tcl/qsh_create_project.tcl -project counter_up_down -top counter_up_down
+```
+Запуск проекта в GUI Quartus из командной строки:
+```
+cd <folder_name>/
+quartus <project_name>.qpf
+```
+Пример для данного проекта:
+```
+cd quartus/
+quartus counter_up_down.qpf
+```
+Запуск компиляции из командной строки:
+```
+quartus_sh -t tcl/qsh_compile.tcl [-project <project_name>]
+```
+Запуск анализа из командной строки:
+```
+quartus_sh -t tcl/qsh_analysis.tcl [-project <project_name>]
+```
+Обновить проект Quartus исходниками из папки `src`:
+```
+quartus_sh -t tcl/qsh_update.tcl [-project <project_name>] [-src <src_folder>] [-src_exc <folders_to_exclude>] [-obj <object_to_update:all/src/pin/tcl>]
+```
