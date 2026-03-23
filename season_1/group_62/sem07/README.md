@@ -1,4 +1,9 @@
 # Использование tcl–скриптов для быстрого создания проектов
+## Ссылки
+- [Репозиторий с tcl-скриптами от ki4igin](https://github.com/ki4igin/tcl)
+- [Установка переменных окружающей среды в Windows](https://remontka.pro/environment-variables-windows/)
+- Git для новичков: [часть 1](https://habr.com/ru/articles/541258/) [часть 2](https://habr.com/ru/articles/542616/)
+
 ## Требования
 - Установлен Active-HDL
 - Путь к Active-HDL добавлен в переменную `Path` системных переменных среды (путь по умолчанию в Windows: `C:\Aldec\Active-HDL-Student-Edition\bin`)
