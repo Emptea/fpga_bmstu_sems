@@ -1,0 +1,6 @@
+[submodule "season_1/group_61/s07/tcl"]
+	path = season_1/group_61/s07/tcl
+	url = https://github.com/ki4igin/tcl.git
+[submodule "season_1/group_62/sem07/tcl"]
+	path = season_1/group_62/sem07/tcl
+	url = https://github.com/ki4igin/tcl.git
