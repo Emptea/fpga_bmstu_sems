@@ -1,0 +1,38 @@
+{
+    "editor.fontLigatures": false,
+    
+    "workbench.colorTheme": "Dark Modern",
+    "editor.tokenColorCustomizations": {
+        "[Default Dark+]": {
+            "textMateRules": [
+                {
+                    "scope": "keyword.control",
+                    "settings": {
+                        "foreground": "#569CD6"
+                    }
+                },
+                {
+                    "scope": "source.vhdl",
+                    "settings": {
+                        "foreground": "#DCDCAA"
+                    }
+                },
+                {
+                    "scope": [
+                        "meta.item.stopping.character.vhdl",
+                        "punctuation.terminator.statement.vhdl",
+                        "punctuation.definition.other.vhdl",
+                        "meta.block.parenthetical_pair.vhdl",
+                        "punctuation.definition.parenthetical_list.begin.vhdl",
+                        
+                    ],
+                    "settings": {
+                        "foreground": "#D4D4D4"
+                    }
+                }
+            ]
+        }
+        
+    },
+    "files.encoding": "windows1251"
+}
