@@ -14,7 +14,7 @@ architecture tb of fir_10khz_tb is
     constant clk_period : time    := 1000 ms / clk_freq;
 
     signal tb_clk     : std_logic := '0';
-    signal tb_reset_n : std_logic := '0';
+    signal tb_reset : std_logic := '1';
 
     signal tb_data_in  : std_logic_vector(15 downto 0) := (others => '0');    
     signal tb_data_out : std_logic_vector(15 downto 0) := (others => '0');
@@ -26,14 +26,14 @@ begin
     fir_10khz_inst : entity work.fir_10khz
         port map(
             clk     => tb_clk,
-            reset_n => tb_reset_n,
+            rst => tb_reset,
             data    => tb_data_in,
             result  => tb_data_out
         );    
 
     sim : process  
 	    file file_in  : text open read_mode is "sin.txt";
-        file file_out : text open write_mode is "data_out.txt";
+        file file_out : text open write_mode is "sin_out.txt";
 
         variable line_in  : line;
         variable line_out : line;
@@ -41,9 +41,9 @@ begin
 		variable sample_in  : std_logic_vector(15 downto 0);
         variable sample_out : std_logic_vector(15 downto 0);
     begin
-        tb_reset_n <= '0';        
+        tb_reset <= '1';        
         wait for 2 * clk_period;
-        tb_reset_n <= '1';
+        tb_reset <= '0';
         wait for 2 * clk_period;
 		
 		while not endfile(file_in) loop
@@ -57,18 +57,6 @@ begin
 			hwrite(line_out, sample_out);
 			writeline(file_out, line_out);			
 		end loop;
-		
-		wait until rising_edge(tb_clk);
-		sample_out := tb_data_out;
-		
-		hwrite(line_out, sample_out);
-		writeline(file_out, line_out); 
-		
-		wait until rising_edge(tb_clk);
-		sample_out := tb_data_out;
-		
-		hwrite(line_out, sample_out);
-		writeline(file_out, line_out);
         finish;
     end process;
 end architecture tb;

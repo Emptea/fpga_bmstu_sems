@@ -39,7 +39,7 @@ architecture rtl of fir_10khz is
     );
 begin
 
-    fir_inst : fir_systolic
+    fir_inst : fir
         generic map (
             N => COEFF'length,
             W => data'length

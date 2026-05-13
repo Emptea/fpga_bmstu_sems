@@ -1,4 +1,4 @@
-function check_data (flp, rtl)
+function sqnr_db = check_data (flp, rtl)
 nfft = numel(rtl);
 rtl = double(rtl);
 if(~isrow(flp))
@@ -12,6 +12,7 @@ end
 flp_mean_pwr = mean(abs(flp).^2);
 rtl_mean_pwr = mean(abs(rtl).^2);
 rtl_descaled = rtl * sqrt(flp_mean_pwr / rtl_mean_pwr);
+sqnr_db = 10*log10(flp_mean_pwr / mean (abs(flp - rtl_descaled).^2));
 
 figure();
 ax1 = subplot(3,1,1);

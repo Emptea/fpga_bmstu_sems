@@ -1,4 +1,4 @@
-function data2hexfile(arr, scale, filename)
+function [int_arr] = data2hexfile(arr, scale, filename)
 
 int_arr = int16(round(arr * scale));
 

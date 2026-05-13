@@ -6,13 +6,14 @@ library ieee;
 entity fir_systolic_cell is
     generic (
         W     : positive := 16;
+        W_COEFF : positive := 16;
         ACC_W : positive := 16
     );
     port (
         clk       : in    std_logic;
         rst       : in    std_logic;
         din       : in    signed(W - 1 downto 0);
-        coeff     : in    signed(W - 1 downto 0);
+        coeff     : in    signed(W_COEFF - 1 downto 0);
         accum_in  : in    signed(ACC_W - 1 downto 0);
         pipe_out  : out   signed(W - 1 downto 0);
         accum_out : out   signed(ACC_W - 1 downto 0)
@@ -21,8 +22,8 @@ end entity;
 
 architecture rtl of fir_systolic_cell is
     signal d_reg     : signed_array_t(1 downto 0)(W - 1 downto 0);
-    signal coeff_reg : signed(W - 1 downto 0);
-    signal prod_reg  : signed(2 * W - 1 downto 0);
+    signal coeff_reg : signed(W_COEFF - 1 downto 0);
+    signal prod_reg  : signed(W_COEFF + W - 1 downto 0);
     signal accum_reg : signed(ACC_W - 1 downto 0);
 begin
 

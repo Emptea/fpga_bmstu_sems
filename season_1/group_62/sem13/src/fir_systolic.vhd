@@ -6,14 +6,15 @@ library ieee;
 entity fir_systolic is
     generic (
         N : positive := 8;
-        W : positive := 16
+        W : positive := 16;
+        W_COEFF : positive := 16
     );
     port (
         clk : in    std_logic;
         rst : in    std_logic;
 
         din   : in    signed(W - 1 downto 0);
-        coeff : in    signed_array_t(N - 1 downto 0)(W - 1 downto 0);
+        coeff : in    signed_array_t(N - 1 downto 0)(W_COEFF - 1 downto 0);
         dout  : out   signed(W - 1 downto 0)
     );
 end entity;
