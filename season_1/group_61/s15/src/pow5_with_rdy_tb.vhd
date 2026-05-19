@@ -133,7 +133,9 @@ begin
 
         report "*** Draining pipeline: upd_vld = 0, down_rdy = 1";
         down_rdy <= '1';
-        wait until up_vld and not up_rdy;
+        if (up_vld and not up_rdy) then
+			wait for CLK_PERIOD;
+		end if;
         up_vld <= '0';
         wait for 10 * CLK_PERIOD;
 
