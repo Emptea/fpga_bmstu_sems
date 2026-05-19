@@ -83,6 +83,14 @@ begin
         if passed then
             report "PASSED" severity warning;
         end if;
+        report "number of transfers: up "
+                                & integer'image(up_cnt)
+                                & " down "
+                                & integer'image(down_cnt)
+                                & " per "
+                                & integer'image(cycle)
+                                & " cycles "
+                                severity warning;
         std.env.finish;
     end process;
 

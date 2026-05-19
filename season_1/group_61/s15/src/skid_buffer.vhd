@@ -31,7 +31,7 @@ begin
         if rst = '1' then
             buf_vld  <= '0';
             down_vld <= '0';
-            up_rdy   <= '1';
+            buf_rdy   <= '1';
         elsif rising_edge(clk) then
             if (buf_rdy = '1' and down_rdy = '0') then
                 buf_vld <= up_vld;
